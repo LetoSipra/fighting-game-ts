@@ -1,16 +1,14 @@
-interface coordinates {
-    position: {     
-            x: number;
-            y: number;
-        }
-    velocity: {
-            x: number 
-            y: number  
-        }
+type coordinates = {
+  x: number;
+  y: number;
+};
+interface posvel {
+  position: coordinates;
+  velocity: coordinates;
 }
 
-const canvas = <HTMLCanvasElement> document.querySelector('canvas');
-const cc = <CanvasRenderingContext2D> canvas.getContext('2d');
+const canvas = <HTMLCanvasElement>document.querySelector('canvas');
+const cc = <CanvasRenderingContext2D>canvas.getContext('2d');
 
 canvas.width = 1024;
 canvas.height = 576;
@@ -19,17 +17,17 @@ cc.fillRect(0, 0, canvas.width, canvas.height);
 const gravity = 0.2;
 
 class Sprite {
-    position: {x: number; y: number}
-    velocity: {x: number; y: number}   
-    width: number
-    height: number
-    lastKey: string
-    hitBox: {
-        position: {x: number, y: number}
-        width: number
-        height: number
-}
-  constructor({ position, velocity }: coordinates) {
+  position: coordinates;
+  velocity: coordinates;
+  width: number;
+  height: number;
+  lastKey: string;
+  hitBox: {
+    position: { x: number; y: number };
+    width: number;
+    height: number;
+  };
+  constructor({ position, velocity }: posvel) {
     this.position = position;
     this.velocity = velocity;
     this.width = 50;
@@ -138,12 +136,10 @@ window.addEventListener('keydown', (event) => {
       keys.d.pressed = true;
       player.lastKey = 'd';
       break;
-
     case 'a':
       keys.a.pressed = true;
       player.lastKey = 'a';
       break;
-
     case 'w':
       player.velocity.y = -10;
       break;
@@ -152,12 +148,10 @@ window.addEventListener('keydown', (event) => {
       keys.ArrowRight.pressed = true;
       enemy.lastKey = 'ArrowRight';
       break;
-
     case 'ArrowLeft':
       keys.ArrowLeft.pressed = true;
       enemy.lastKey = 'ArrowLeft';
       break;
-
     case 'ArrowUp':
       enemy.velocity.y = -10;
       break;
