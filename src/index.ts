@@ -14,8 +14,7 @@ canvas.width = 1024;
 canvas.height = 576;
 
 cc.fillRect(0, 0, canvas.width, canvas.height);
-const gravity = 0.2;
-
+const gravity = 0.5;
 class Sprite {
   position: coordinates;
   velocity: coordinates;
